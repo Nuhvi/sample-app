@@ -1,12 +1,42 @@
-inherit_from: .rubocop_todo.yml
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - "bin/*"
+    - "config/**/*"
+    - "db/**/*"
+    - "Guardfile"
+    - "Rakefile"
 
- 
 Metrics/LineLength:
   Max: 120
-
 Metrics/MethodLength:
   Include: ["app/controllers/*"]
   Max: 20
-
+Metrics/AbcSize:
+  Exclude: ["app/controllers/*"]
+  Max: 20
+Metrics/AbcSize:
+  Include: ["app/controllers/*"]
+  Max: 30
+Metrics/ClassLength:
+  Max: 150
 Metrics/BlockLength:
-  ExcludedMethods: ['describe', 'guard']
+  ExcludedMethods: ['describe']
+
+Style/Documentation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/MixinUsage:
+  Exclude:
+    - 'bin/*'
+    - 'bin/*'
+
+Layout/AlignHash:
+  EnforcedColonStyle: key
+Layout/ExtraSpacing:
+  AllowForAlignment: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+
