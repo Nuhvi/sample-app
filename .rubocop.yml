@@ -1,11 +1,11 @@
 AllCops:
-  DisplayCopNames: true
   Exclude:
     - "bin/*"
-    - "config/**/*"
-    - "db/**/*"
+    - "db/*"
+    - "config/*"
     - "Guardfile"
     - "Rakefile"
+  DisplayCopNames: true
 
 Metrics/LineLength:
   Max: 120
@@ -24,10 +24,6 @@ Style/Documentation:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
-Style/MixinUsage:
-  Exclude:
-    - 'bin/*'
-    - 'bin/*'
 
 Layout/AlignHash:
   EnforcedColonStyle: key
@@ -36,4 +32,3 @@ Layout/ExtraSpacing:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
-
