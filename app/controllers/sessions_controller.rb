@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:session][:password])
       # log in
     else
+      flash.now[:danger] = 'Invalud email/paswword compination'
       render 'new'
     end
   end
