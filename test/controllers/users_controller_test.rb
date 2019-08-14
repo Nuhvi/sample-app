@@ -29,14 +29,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not @other_user.reload.admin?
   end
 
-  test "should redirect destroy when not logged in" do
+  test 'should redirect destroy when not logged in' do
     assert_no_difference 'User.count' do
       delete user_path(@user)
     end
     assert_redirected_to login_url
   end
 
-  test "should show error message when logged in as a non-admin" do
+  test 'should show error message when logged in as a non-admin' do
     log_in_as(@other_user)
     assert_no_difference 'User.count' do
       delete user_path(@user)
@@ -46,7 +46,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert-danger', 'You are not an admin!'
   end
 
-  test "Admin user can delete " do
+  test 'Admin user can delete ' do
     log_in_as(@user)
     assert_difference 'User.count', -1 do
       delete user_path(@other_user)
