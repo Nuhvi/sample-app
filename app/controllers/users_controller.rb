@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :logged_in_user, only: %i[edit update]
+  before_action :correct_user, only: %i[edit update]
 
   def new
     @user = User.new
@@ -45,5 +46,10 @@ class UsersController < ApplicationController
   def logged_in_user
     flash[:danger] = 'Please log in.' unless logged_in?
     redirect_to login_url unless logged_in?
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless @user == current_user
   end
 end
