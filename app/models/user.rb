@@ -56,7 +56,6 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
-
   private
 
   def downcase_email
