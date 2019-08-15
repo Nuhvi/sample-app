@@ -39,6 +39,19 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     get edit_password_reset_path(user.reset_token, email: user.email)
     assert_template 'password_resets/edit'
     assert_select 'input[name=email][type=hidden][value=?]', user.email
+  end
+
+  test 'password resets other cases' do
+    # Password reset form
+    # Valid email
+    post password_resets_path,
+         params: { password_reset: { email: @user.email } }
+    assert_not_equal @user.reset_digest, @user.reload.reset_digest
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    assert_not flash.empty?
+    assert_redirected_to root_url
+    # Password reset form
+    user = assigns(:user)
     # Invalid password & confirmation
     patch password_reset_path(user.reset_token),
           params: { email: user.email,
