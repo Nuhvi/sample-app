@@ -21,8 +21,8 @@ Rails.application.configure do
   }
 
   # Don't care if the mailer can't send.
-  host = 'localhost:3000' # Local server
-  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { host: 'example.com' }
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local = true
