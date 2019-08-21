@@ -41,7 +41,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'User.count' do
       delete user_path(@user)
     end
-    assert_redirected_to users_path
+    assert_redirected_to root_url
     follow_redirect!
     assert_select 'div.alert-danger', 'You are not an admin!'
   end
