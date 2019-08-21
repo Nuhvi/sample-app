@@ -32,9 +32,7 @@ class MicropostTest < ActiveSupport::TestCase
   end
 
   test 'associated microposts should be destroyed' do
-    @user.save
-    @user.microposts.create!(content: 'Lorem ipsum')
     @user.destroy
-    assert_equal Micropost.count, 0
+    assert_equal @user.microposts.count, 0
   end
 end
