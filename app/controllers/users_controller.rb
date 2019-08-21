@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to(root_url) && return unless @user.activated?
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def create
@@ -55,12 +55,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  def logged_in_user
-    store_location unless logged_in?
-    flash[:danger] = 'Please log in.' unless logged_in?
-    redirect_to login_url unless logged_in?
-  end
-
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user)
@@ -68,6 +62,6 @@ class UsersController < ApplicationController
 
   def admin_user
     flash[:danger] = 'You are not an admin!' unless current_user.admin?
-    redirect_to(users_path) unless current_user.admin?
+    redirect_to(root_url) unless current_user.admin?
   end
 end
