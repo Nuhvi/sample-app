@@ -8,7 +8,7 @@ ruby '2.6.3'
 gem 'bcrypt', '3.1.12'
 gem 'bootstrap-sass', '>= 3.4.1'
 gem 'bootstrap-will_paginate', '1.0.0'
-gem 'carrierwave', '1.2.2'
+gem 'carrierwave', '1.3.2'
 gem 'faker'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem "mini_magick", ">= 4.9.4"
